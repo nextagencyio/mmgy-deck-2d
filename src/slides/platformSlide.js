@@ -91,67 +91,70 @@ export function createPlatformSlide(app) {
   drawBlock();
 
   /* ── Pixel character sprite data (16×16 grid) ──── */
-  // Run frame 1
+  // Color key: R=red(helmet), S=skin, B=blue(suit), D=darkBlue(boots),
+  //            W=white(eyes/visor), K=black(outline), G=gold(belt), .=empty
+  // Run frame 1 (standing / right foot forward)
   const frame1 = [
-    '....RRRR....',
-    '...RRRRRR...',
-    '...SSBSBS...',
-    '..SSBSBSSS..',
-    '..SSBSBSSS..',
-    '...SSSSSS...',
-    '..RRBRRB....',
-    '..RRBRRBRR..',
-    '..RRBBBBR...',
-    '...BBRRBB...',
-    '..BBBRRBB...',
-    '..BB..BB....',
-    '..SS..SS....',
-    '..SSS.SSS...',
-    '..DDD.DDD...',
-    '............',
+    '....KKKK........',
+    '...KRRRRK.......',
+    '..KRRRRRRRK.....',
+    '..KRRWWWRRK.....',
+    '..KSWKWKWSK.....',
+    '..KSSSSSSK......',
+    '...KSSSSK.......',
+    '....KBBK........',
+    '...KBBBBK.......',
+    '..KBBGBBK.......',
+    '..KBBBBBBK......',
+    '..KBK.KBK.......',
+    '..KBK.KBK.......',
+    '..KDK.KDK.......',
+    '..KDDK.KDDK.....',
+    '..KKKK.KKKK.....',
   ];
-  // Run frame 2 (legs apart)
+  // Run frame 2 (mid-stride — legs apart)
   const frame2 = [
-    '....RRRR....',
-    '...RRRRRR...',
-    '...SSBSBS...',
-    '..SSBSBSSS..',
-    '..SSBSBSSS..',
-    '...SSSSSS...',
-    '..RRBRRB....',
-    '..RRBRRBRR..',
-    '..RRBBBBR...',
-    '...BBRRBB...',
-    '..BB.RRBB...',
-    '.SS...BB....',
-    '.SSS..SS....',
-    '.DDD..SSS...',
-    '......DDD...',
-    '............',
+    '....KKKK........',
+    '...KRRRRK.......',
+    '..KRRRRRRRK.....',
+    '..KRRWWWRRK.....',
+    '..KSWKWKWSK.....',
+    '..KSSSSSSK......',
+    '...KSSSSK.......',
+    '....KBBK........',
+    '...KBBBBK.......',
+    '..KBBGBBK.......',
+    '..KBBBBBBK......',
+    '...KBK.KBK......',
+    '..KDK...KBK.....',
+    '.KDDK...KDDK....',
+    '.KKKK....KKKK...',
+    '................',
   ];
-  // Jump frame
+  // Jump frame (arms up, legs tucked)
   const jumpFrame = [
-    '....RRRR....',
-    '...RRRRRR...',
-    '...SSBSBS...',
-    '..SSBSBSSS..',
-    '..SSBSBSSS..',
-    '...SSSSSS...',
-    '.RRRBRRB....',
-    '.RRRBRRBRR..',
-    '.RRRBBBBR...',
-    '...BBRRBB...',
-    '..BBBRRBB...',
-    '..BB..BB....',
-    '...SS.SS....',
-    '...SSS.SSS..',
-    '...DDD.DDD..',
-    '............',
+    '....KKKK........',
+    '...KRRRRK.......',
+    '..KRRRRRRRK.....',
+    '..KRRWWWRRK.....',
+    '..KSWKWKWSK.....',
+    '.KSSSSSSSSK.....',
+    'KKKSSSSSKK......',
+    'KSK.KBBK.KSK...',
+    '....KBBBBK......',
+    '...KBBGBBK......',
+    '...KBBBBBBK.....',
+    '...KBKKBK.......',
+    '...KDKKDK.......',
+    '..KDDK.KDDK.....',
+    '..KKKK.KKKK.....',
+    '................',
   ];
 
   const colorMap = {
     'R': C.red, 'S': C.skin, 'B': C.blue,
-    'D': C.blueDark, '.': null,
+    'D': C.blueDark, 'W': C.white, 'K': C.black,
+    'G': C.gold, '.': null,
   };
 
   function drawSprite(gfx, frameData, px) {
@@ -173,7 +176,7 @@ export function createPlatformSlide(app) {
   charContainer.addChild(charGfx);
 
   // Character starts off-screen left
-  const charW = 12 * PX;
+  const charW = 16 * PX;
   const charH = 16 * PX;
   charContainer.x = -charW * 2;
   charContainer.y = groundY - charH;
