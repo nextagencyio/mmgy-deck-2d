@@ -20,6 +20,7 @@ import { createWipeSlide } from './slides/wipeSlide.js';
 import { createRobotSlide } from './slides/robotSlide.js';
 import { createSpaceshipSlide } from './slides/spaceshipSlide.js';
 import { createPlatformSlide } from './slides/platformSlide.js';
+import { createTransformSlide } from './slides/transformSlide.js';
 
 /* ── Slide registry (closing slide is HTML-only) ── */
 const slideFactories = [
@@ -44,7 +45,8 @@ const slideFactories = [
   createRobotSlide,          // 18 — Robot Mascot
   createSpaceshipSlide,      // 19 — Starfighter
   createPlatformSlide,       // 20 — 8-Bit Platform
-  null,                      // 21 — Closing (HTML only)
+  createTransformSlide,      // 21 — Challenges → Solutions
+  null,                      // 22 — Closing (HTML only)
 ];
 
 const TOTAL = slideFactories.length;
