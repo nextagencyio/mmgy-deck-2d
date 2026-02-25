@@ -17,6 +17,7 @@ import { createDisplacementSlide } from './slides/displacementSlide.js';
 import { createParallaxSlide } from './slides/parallaxSlide.js';
 import { createKaleidoscopeSlide } from './slides/kaleidoscopeSlide.js';
 import { createWipeSlide } from './slides/wipeSlide.js';
+import { createRobotSlide } from './slides/robotSlide.js';
 
 /* ── Slide registry (closing slide is HTML-only) ── */
 const slideFactories = [
@@ -38,7 +39,8 @@ const slideFactories = [
   createParallaxSlide,       // 15 — Parallax Layers
   createKaleidoscopeSlide,   // 16 — Kaleidoscope
   createWipeSlide,           // 17 — Before/After Wipe
-  null,                      // 18 — Closing (HTML only)
+  createRobotSlide,          // 18 — Robot Mascot
+  null,                      // 19 — Closing (HTML only)
 ];
 
 const TOTAL = slideFactories.length;
