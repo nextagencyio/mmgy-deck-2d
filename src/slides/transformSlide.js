@@ -20,9 +20,9 @@ export function createTransformSlide(app) {
     { challenge: 'Poor Scalability',   solution: 'Cloud Native' },
   ];
 
-  const COLS = { left: W * 0.18, right: W * 0.82, center: W * 0.5 };
-  const ROW_START = H * 0.18;
-  const ROW_SPACING = H * 0.145;
+  const COLS = { left: W * 0.19, right: W * 0.81, center: W * 0.5 };
+  const ROW_START = H * 0.2;
+  const ROW_SPACING = H * 0.14;
 
   /* ── Background ─────────────────────────────────── */
   const bgGfx = new Graphics();
@@ -39,99 +39,106 @@ export function createTransformSlide(app) {
 
   /* ── Challenge blocks (left side) ───────────────── */
   const challengeItems = [];
+  const CARD_W = 170 * S;
+  const CARD_H = 48 * S;
   for (let i = 0; i < pairs.length; i++) {
     const y = ROW_START + i * ROW_SPACING;
     const ic = new Container();
-    ic.x = -200; // start off-screen left
+    ic.x = -300;
     ic.y = y;
     ic.alpha = 0;
 
-    // Dark angular block
     const bg = new Graphics();
-    const bw = 140 * S;
-    const bh = 32 * S;
-    // Hexagonal / angular shape
-    bg.moveTo(8 * S, 0);
-    bg.lineTo(bw - 4 * S, 0);
-    bg.lineTo(bw, bh * 0.5);
-    bg.lineTo(bw - 4 * S, bh);
-    bg.lineTo(8 * S, bh);
-    bg.lineTo(0, bh * 0.5);
-    bg.closePath();
-    bg.fill({ color: 0x1A1A1A, alpha: 0.9 });
-    bg.stroke({ width: 1.5 * S, color: 0xE63312, alpha: 0.6 });
+    // Outer glow
+    bg.roundRect(-3 * S, -3 * S, CARD_W + 6 * S, CARD_H + 6 * S, 8 * S);
+    bg.fill({ color: 0xE63312, alpha: 0.06 });
+    // Main card
+    bg.roundRect(0, 0, CARD_W, CARD_H, 6 * S);
+    bg.fill({ color: 0x1A1A1A, alpha: 0.92 });
+    bg.stroke({ width: 1.5 * S, color: 0xE63312, alpha: 0.45 });
+    // Red left accent bar
+    bg.roundRect(0, 0, 4 * S, CARD_H, 3 * S);
+    bg.fill({ color: 0xE63312, alpha: 0.8 });
     ic.addChild(bg);
 
-    // Warning icon — small triangle
-    const warn = new Graphics();
-    warn.moveTo(12 * S, bh * 0.28);
-    warn.lineTo(20 * S, bh * 0.72);
-    warn.lineTo(4 * S, bh * 0.72);
-    warn.closePath();
-    warn.fill({ color: 0xE63312, alpha: 0.8 });
-    ic.addChild(warn);
+    // Warning icon — circle with X
+    const icon = new Graphics();
+    icon.circle(22 * S, CARD_H * 0.5, 11 * S);
+    icon.fill({ color: 0xE63312, alpha: 0.15 });
+    icon.circle(22 * S, CARD_H * 0.5, 11 * S);
+    icon.stroke({ width: 1.5 * S, color: 0xE63312, alpha: 0.6 });
+    // X mark
+    icon.moveTo(17 * S, CARD_H * 0.5 - 5 * S);
+    icon.lineTo(27 * S, CARD_H * 0.5 + 5 * S);
+    icon.stroke({ width: 2 * S, color: 0xE63312, alpha: 0.8 });
+    icon.moveTo(27 * S, CARD_H * 0.5 - 5 * S);
+    icon.lineTo(17 * S, CARD_H * 0.5 + 5 * S);
+    icon.stroke({ width: 2 * S, color: 0xE63312, alpha: 0.8 });
+    ic.addChild(icon);
 
     const label = new Text({
       text: pairs[i].challenge,
       style: {
-        fontFamily: 'Oswald', fontSize: 13 * S, fill: 0xE8E4DE,
+        fontFamily: 'Oswald', fontSize: 15 * S, fill: 0xE8E4DE,
         fontWeight: '500', letterSpacing: 1,
       }
     });
-    label.x = 26 * S;
-    label.y = bh * 0.18;
+    label.x = 40 * S;
+    label.y = CARD_H * 0.5 - label.height * 0.5;
     ic.addChild(label);
 
     container.addChild(ic);
-    challengeItems.push({ container: ic, targetX: COLS.left - bw * 0.5, delay: i * 15 });
+    challengeItems.push({ container: ic, targetX: COLS.left - CARD_W * 0.5, delay: i * 15 });
   }
 
-  /* ── Solution orbs (right side) ─────────────────── */
+  /* ── Solution cards (right side) ─────────────────── */
   const solutionItems = [];
   for (let i = 0; i < pairs.length; i++) {
     const y = ROW_START + i * ROW_SPACING;
     const ic = new Container();
-    ic.x = W + 200; // start off-screen right
+    ic.x = W + 300;
     ic.y = y;
     ic.alpha = 0;
 
-    // Glowing rounded card
     const bg = new Graphics();
-    const bw = 140 * S;
-    const bh = 32 * S;
-    // Glow behind
-    bg.roundRect(-6 * S, -4 * S, bw + 12 * S, bh + 8 * S, 12 * S);
+    // Outer glow
+    bg.roundRect(-4 * S, -4 * S, CARD_W + 8 * S, CARD_H + 8 * S, 10 * S);
     bg.fill({ color: 0x3B82F6, alpha: 0.08 });
     // Main card
-    bg.roundRect(0, 0, bw, bh, 6 * S);
-    bg.fill({ color: 0x0F2847, alpha: 0.9 });
-    bg.stroke({ width: 1.5 * S, color: 0x3B82F6, alpha: 0.5 });
+    bg.roundRect(0, 0, CARD_W, CARD_H, 6 * S);
+    bg.fill({ color: 0x0C1F3D, alpha: 0.92 });
+    bg.stroke({ width: 1.5 * S, color: 0x3B82F6, alpha: 0.45 });
+    // Blue left accent bar
+    bg.roundRect(0, 0, 4 * S, CARD_H, 3 * S);
+    bg.fill({ color: 0x3B82F6, alpha: 0.8 });
     ic.addChild(bg);
 
-    // Check icon — small circle with check
-    const check = new Graphics();
-    check.circle(12 * S, bh * 0.5, 7 * S);
-    check.fill({ color: 0x10B981, alpha: 0.8 });
-    // Checkmark lines
-    check.moveTo(8 * S, bh * 0.5);
-    check.lineTo(11 * S, bh * 0.5 + 3 * S);
-    check.lineTo(16 * S, bh * 0.5 - 4 * S);
-    check.stroke({ width: 1.5 * S, color: 0xFFFFFF, alpha: 0.9 });
-    ic.addChild(check);
+    // Checkmark icon
+    const icon = new Graphics();
+    icon.circle(22 * S, CARD_H * 0.5, 11 * S);
+    icon.fill({ color: 0x10B981, alpha: 0.15 });
+    icon.circle(22 * S, CARD_H * 0.5, 11 * S);
+    icon.stroke({ width: 1.5 * S, color: 0x10B981, alpha: 0.6 });
+    // Checkmark
+    icon.moveTo(16 * S, CARD_H * 0.5);
+    icon.lineTo(20 * S, CARD_H * 0.5 + 5 * S);
+    icon.lineTo(28 * S, CARD_H * 0.5 - 5 * S);
+    icon.stroke({ width: 2 * S, color: 0x10B981, alpha: 0.9 });
+    ic.addChild(icon);
 
     const label = new Text({
       text: pairs[i].solution,
       style: {
-        fontFamily: 'Oswald', fontSize: 13 * S, fill: 0xE8E4DE,
+        fontFamily: 'Oswald', fontSize: 15 * S, fill: 0xE8E4DE,
         fontWeight: '500', letterSpacing: 1,
       }
     });
-    label.x = 24 * S;
-    label.y = bh * 0.18;
+    label.x = 40 * S;
+    label.y = CARD_H * 0.5 - label.height * 0.5;
     ic.addChild(label);
 
     container.addChild(ic);
-    solutionItems.push({ container: ic, targetX: COLS.right - bw * 0.5, delay: i * 15 + 60 });
+    solutionItems.push({ container: ic, targetX: COLS.right - CARD_W * 0.5, delay: i * 15 + 60 });
   }
 
   /* ── Flow particles (challenges → solutions) ────── */
@@ -218,9 +225,9 @@ export function createTransformSlide(app) {
       const arrowProgress = Math.max(0, Math.min((elapsed - showAt) / 30, 1));
       if (arrowProgress <= 0) continue;
 
-      const y = ROW_START + i * ROW_SPACING + 16 * S;
-      const leftEdge = COLS.left + 70 * S;
-      const rightEdge = COLS.right - 70 * S;
+      const y = ROW_START + i * ROW_SPACING + CARD_H * 0.5;
+      const leftEdge = COLS.left + CARD_W * 0.5 + 10 * S;
+      const rightEdge = COLS.right - CARD_W * 0.5 - 10 * S;
       const midX = COLS.center;
 
       // Arrow line — grows from left to right
@@ -267,9 +274,9 @@ export function createTransformSlide(app) {
     // F) Flow particles — spawn from challenge side, drift to solution side
     if (elapsed > 80 && Math.random() < 0.3) {
       const row = Math.floor(Math.random() * pairs.length);
-      const y = ROW_START + row * ROW_SPACING + 16 * S;
+      const y = ROW_START + row * ROW_SPACING + CARD_H * 0.5;
       flowParticles.push({
-        x: COLS.left + 70 * S,
+        x: COLS.left + CARD_W * 0.5 + 10 * S,
         y: y + (Math.random() - 0.5) * 10 * S,
         vx: 1.5 + Math.random() * 1.5,
         vy: (Math.random() - 0.5) * 0.3,
@@ -286,7 +293,7 @@ export function createTransformSlide(app) {
       p.x += p.vx * dt;
       p.y += p.vy * dt + Math.sin(t * 3 + p.x * 0.01) * 0.2;
       p.life -= p.decay * dt;
-      p.phase = Math.min((p.x - (COLS.left + 70 * S)) / (COLS.right - 70 * S - COLS.left - 70 * S), 1);
+      p.phase = Math.min((p.x - (COLS.left + CARD_W * 0.5 + 10 * S)) / (COLS.right - CARD_W * 0.5 - 10 * S - COLS.left - CARD_W * 0.5 - 10 * S), 1);
 
       if (p.life <= 0 || p.x > COLS.right + 20 * S) {
         flowParticles.splice(i, 1);
