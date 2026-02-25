@@ -4,15 +4,41 @@ import { createNebulaSlide } from './slides/nebulaSlide.js';
 import { createStatsSlide } from './slides/statsSlide.js';
 import { createOrbitsSlide } from './slides/orbitsSlide.js';
 import { createWarpSlide } from './slides/warpSlide.js';
+import { createFireworksSlide } from './slides/fireworksSlide.js';
+import { createMagneticSlide } from './slides/magneticSlide.js';
+import { createMetaballSlide } from './slides/metaballSlide.js';
+import { createTextMorphSlide } from './slides/textMorphSlide.js';
+import { createKineticSlide } from './slides/kineticSlide.js';
+import { createGlitchSlide } from './slides/glitchSlide.js';
+import { createNetworkSlide } from './slides/networkSlide.js';
+import { createRadarSlide } from './slides/radarSlide.js';
+import { createTimelineSlide } from './slides/timelineSlide.js';
+import { createDisplacementSlide } from './slides/displacementSlide.js';
+import { createParallaxSlide } from './slides/parallaxSlide.js';
+import { createKaleidoscopeSlide } from './slides/kaleidoscopeSlide.js';
+import { createWipeSlide } from './slides/wipeSlide.js';
 
 /* ── Slide registry (closing slide is HTML-only) ── */
 const slideFactories = [
-  createHeroSlide,
-  createNebulaSlide,
-  createStatsSlide,
-  createOrbitsSlide,
-  createWarpSlide,
-  null, // closing — no PixiJS scene
+  createHeroSlide,           // 0  — Hero
+  createNebulaSlide,         // 1  — Particle Nebula
+  createStatsSlide,          // 2  — Stats Dashboard
+  createOrbitsSlide,         // 3  — Platform Orbits
+  createWarpSlide,           // 4  — Warp Speed
+  createFireworksSlide,      // 5  — Fireworks & Confetti
+  createMagneticSlide,       // 6  — Magnetic Field
+  createMetaballSlide,       // 7  — Liquid Blobs
+  createTextMorphSlide,      // 8  — Text Particle Morph
+  createKineticSlide,        // 9  — Kinetic Typography
+  createGlitchSlide,         // 10 — Glitch Text
+  createNetworkSlide,        // 11 — Network Graph
+  createRadarSlide,          // 12 — Radar Chart
+  createTimelineSlide,       // 13 — Timeline
+  createDisplacementSlide,   // 14 — Displacement Ripple
+  createParallaxSlide,       // 15 — Parallax Layers
+  createKaleidoscopeSlide,   // 16 — Kaleidoscope
+  createWipeSlide,           // 17 — Before/After Wipe
+  null,                      // 18 — Closing (HTML only)
 ];
 
 const TOTAL = slideFactories.length;

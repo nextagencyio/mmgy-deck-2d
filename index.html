@@ -11,17 +11,10 @@
 </head>
 <body>
   <div id="app">
-    <!-- PixiJS canvas mounts here -->
     <div id="pixi-canvas-container"></div>
+    <div class="progress-bar"><div class="progress-fill"></div></div>
 
-    <!-- Progress bar -->
-    <div class="progress-bar">
-      <div class="progress-fill"></div>
-    </div>
-
-    <!-- ========== SLIDE OVERLAYS ========== -->
-
-    <!-- Slide 0: Hero -->
+    <!-- 0: Hero -->
     <div class="slide-overlay active" data-slide="0">
       <div class="hero-content">
         <svg class="hero-logo" viewBox="0 0 280 32" xmlns="http://www.w3.org/2000/svg">
@@ -36,12 +29,12 @@
       </div>
     </div>
 
-    <!-- Slide 1: Particle Nebula -->
+    <!-- 1: Nebula -->
     <div class="slide-overlay" data-slide="1">
       <div class="slide-content slide-content--left">
         <div class="slide-label">PARTICLE SYSTEMS</div>
         <h2 class="slide-title">Cosmic Nebula</h2>
-        <p class="slide-body">Thousands of particles flowing through a procedural vortex field, demonstrating high-performance 2D particle rendering with additive blending.</p>
+        <p class="slide-body">Thousands of particles flowing through a procedural vortex field with additive blending and colour gradients.</p>
         <ul class="feature-list">
           <li>Real-time flow simulation</li>
           <li>Additive blend modes</li>
@@ -50,7 +43,7 @@
       </div>
     </div>
 
-    <!-- Slide 2: Stats -->
+    <!-- 2: Stats -->
     <div class="slide-overlay" data-slide="2">
       <div class="slide-content slide-content--top">
         <div class="slide-label">DATA VISUALIZATION</div>
@@ -58,7 +51,7 @@
       </div>
     </div>
 
-    <!-- Slide 3: Solar System -->
+    <!-- 3: Orbits -->
     <div class="slide-overlay" data-slide="3">
       <div class="slide-content slide-content--left">
         <div class="slide-label">INTERACTIVE DIAGRAMS</div>
@@ -67,7 +60,7 @@
       </div>
     </div>
 
-    <!-- Slide 4: Warp -->
+    <!-- 4: Warp -->
     <div class="slide-overlay" data-slide="4">
       <div class="slide-content slide-content--center">
         <h2 class="slide-title slide-title--large">Into the Horizon</h2>
@@ -75,41 +68,156 @@
       </div>
     </div>
 
-    <!-- Slide 5: Closing -->
+    <!-- 5: Fireworks -->
     <div class="slide-overlay" data-slide="5">
+      <div class="slide-content slide-content--center">
+        <h2 class="slide-title slide-title--large">Launch Day</h2>
+        <p class="slide-body">Celebratory fireworks and confetti with physics-based particle bursts.</p>
+      </div>
+    </div>
+
+    <!-- 6: Magnetic Field -->
+    <div class="slide-overlay" data-slide="6">
+      <div class="slide-content slide-content--left">
+        <div class="slide-label">PHYSICS SIMULATION</div>
+        <h2 class="slide-title">Magnetic Field</h2>
+        <p class="slide-body">Particles respond to invisible attractor forces, creating dynamic flow patterns as data is pulled toward platform nodes.</p>
+        <ul class="feature-list">
+          <li>Multi-body gravity</li>
+          <li>Perpendicular drift</li>
+          <li>Trail rendering</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 7: Metaball -->
+    <div class="slide-overlay" data-slide="7">
+      <div class="slide-content slide-content--left">
+        <div class="slide-label">ORGANIC RENDERING</div>
+        <h2 class="slide-title">Liquid Blobs</h2>
+        <p class="slide-body">Soft blobs that merge and flow organically, using blur filters to create the classic metaball merge effect.</p>
+      </div>
+    </div>
+
+    <!-- 8: Text Morph -->
+    <div class="slide-overlay" data-slide="8">
+      <div class="slide-content slide-content--left">
+        <div class="slide-label">PARTICLE TYPOGRAPHY</div>
+        <h2 class="slide-title">Written in Light</h2>
+        <p class="slide-body">Hundreds of particles scatter and reform to spell different words, using spring physics for smooth transitions.</p>
+      </div>
+    </div>
+
+    <!-- 9: Kinetic Typography -->
+    <div class="slide-overlay" data-slide="9">
+      <div class="slide-content slide-content--top">
+        <div class="slide-label">KINETIC TYPOGRAPHY</div>
+      </div>
+    </div>
+
+    <!-- 10: Glitch -->
+    <div class="slide-overlay" data-slide="10">
+      <div class="slide-content slide-content--top">
+        <div class="slide-label">DIGITAL ARTIFACTS</div>
+      </div>
+    </div>
+
+    <!-- 11: Network -->
+    <div class="slide-overlay" data-slide="11">
+      <div class="slide-content slide-content--left">
+        <div class="slide-label">FORCE-DIRECTED LAYOUT</div>
+        <h2 class="slide-title">Platform Network</h2>
+        <p class="slide-body">A self-organizing network graph where nodes repel and edges attract, with data packets flowing between services.</p>
+      </div>
+    </div>
+
+    <!-- 12: Radar -->
+    <div class="slide-overlay" data-slide="12">
+      <div class="slide-content slide-content--left">
+        <div class="slide-label">CAPABILITY COMPARISON</div>
+        <h2 class="slide-title">Radar Analysis</h2>
+        <p class="slide-body">Animated spider chart comparing platform capabilities — Horizon vs Legacy across six key dimensions.</p>
+      </div>
+    </div>
+
+    <!-- 13: Timeline -->
+    <div class="slide-overlay" data-slide="13">
+      <div class="slide-content slide-content--top">
+        <div class="slide-label">PROJECT ROADMAP</div>
+        <h2 class="slide-title">Migration Timeline</h2>
+      </div>
+    </div>
+
+    <!-- 14: Displacement -->
+    <div class="slide-overlay" data-slide="14">
+      <div class="slide-content slide-content--left">
+        <div class="slide-label">WAVE SIMULATION</div>
+        <h2 class="slide-title">Displacement Ripple</h2>
+        <p class="slide-body">A grid of points displaced by overlapping sine wave functions, creating an organic ripple effect emanating from dual origins.</p>
+      </div>
+    </div>
+
+    <!-- 15: Parallax -->
+    <div class="slide-overlay" data-slide="15">
+      <div class="slide-content slide-content--left">
+        <div class="slide-label">DEPTH ILLUSION</div>
+        <h2 class="slide-title">Parallax Landscape</h2>
+        <p class="slide-body">Multi-layer mountain landscape responding to mouse movement. Each layer shifts at a different rate, creating depth.</p>
+        <ul class="feature-list">
+          <li>Move your mouse to explore</li>
+          <li>4 depth layers</li>
+          <li>Stars, mountains, hills, ground</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 16: Kaleidoscope -->
+    <div class="slide-overlay" data-slide="16">
+      <div class="slide-content slide-content--left">
+        <div class="slide-label">GENERATIVE ART</div>
+        <h2 class="slide-title">Kaleidoscope</h2>
+        <p class="slide-body">Symmetrical pattern generation with 10-fold rotational symmetry, rendered in the MMGY brand palette.</p>
+      </div>
+    </div>
+
+    <!-- 17: Wipe -->
+    <div class="slide-overlay" data-slide="17">
+      <div class="slide-content slide-content--top">
+        <div class="slide-label">TRANSFORMATION</div>
+        <h2 class="slide-title">Legacy vs. Horizon</h2>
+      </div>
+    </div>
+
+    <!-- 18: Closing -->
+    <div class="slide-overlay" data-slide="18">
       <div class="closing-content">
         <div class="slide-label">RECAP</div>
-        <h2 class="slide-title">5 Interactive 2D Demos</h2>
+        <h2 class="slide-title">18 Interactive 2D Demos</h2>
         <div class="closing-grid">
-          <div class="closing-card">
-            <span class="closing-number">01</span>
-            <span class="closing-name">Starfield Hero</span>
-          </div>
-          <div class="closing-card">
-            <span class="closing-number">02</span>
-            <span class="closing-name">Particle Nebula</span>
-          </div>
-          <div class="closing-card">
-            <span class="closing-number">03</span>
-            <span class="closing-name">Stats Dashboard</span>
-          </div>
-          <div class="closing-card">
-            <span class="closing-number">04</span>
-            <span class="closing-name">Platform Orbits</span>
-          </div>
-          <div class="closing-card">
-            <span class="closing-number">05</span>
-            <span class="closing-name">Warp Speed</span>
-          </div>
+          <div class="closing-card"><span class="closing-number">01</span><span class="closing-name">Starfield Hero</span></div>
+          <div class="closing-card"><span class="closing-number">02</span><span class="closing-name">Particle Nebula</span></div>
+          <div class="closing-card"><span class="closing-number">03</span><span class="closing-name">Stats Dashboard</span></div>
+          <div class="closing-card"><span class="closing-number">04</span><span class="closing-name">Platform Orbits</span></div>
+          <div class="closing-card"><span class="closing-number">05</span><span class="closing-name">Warp Speed</span></div>
+          <div class="closing-card"><span class="closing-number">06</span><span class="closing-name">Fireworks</span></div>
+          <div class="closing-card"><span class="closing-number">07</span><span class="closing-name">Magnetic Field</span></div>
+          <div class="closing-card"><span class="closing-number">08</span><span class="closing-name">Liquid Blobs</span></div>
+          <div class="closing-card"><span class="closing-number">09</span><span class="closing-name">Text Morph</span></div>
+          <div class="closing-card"><span class="closing-number">10</span><span class="closing-name">Kinetic Type</span></div>
+          <div class="closing-card"><span class="closing-number">11</span><span class="closing-name">Glitch Text</span></div>
+          <div class="closing-card"><span class="closing-number">12</span><span class="closing-name">Network Graph</span></div>
+          <div class="closing-card"><span class="closing-number">13</span><span class="closing-name">Radar Chart</span></div>
+          <div class="closing-card"><span class="closing-number">14</span><span class="closing-name">Timeline</span></div>
+          <div class="closing-card"><span class="closing-number">15</span><span class="closing-name">Displacement</span></div>
+          <div class="closing-card"><span class="closing-number">16</span><span class="closing-name">Parallax</span></div>
+          <div class="closing-card"><span class="closing-number">17</span><span class="closing-name">Kaleidoscope</span></div>
+          <div class="closing-card"><span class="closing-number">18</span><span class="closing-name">Before/After</span></div>
         </div>
         <p class="closing-footer">Built with PixiJS &middot; MMGY Global</p>
       </div>
     </div>
 
-    <!-- Slide counter -->
-    <div class="slide-counter">1 / 6</div>
-
-    <!-- Navigation hint -->
+    <div class="slide-counter">1 / 19</div>
     <div class="nav-hint">Use arrow keys or swipe to navigate</div>
   </div>
 
