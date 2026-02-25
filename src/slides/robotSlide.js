@@ -167,20 +167,9 @@ export function createRobotSlide(app) {
   rightEyeGfx.fill({ color: 0xFFFFFF, alpha: 1 });
   headContainer.addChild(rightEyeGfx);
 
-  // Eyelids (for blink — drawn on top of eyes)
-  const leftLid = new Graphics();
-  leftLid.roundRect(-31 * S, -39 * S, 22 * S, 22 * S, 4 * S);
-  leftLid.fill({ color: 0x1A1A1A, alpha: 0.95 });
-  leftLid.scale.y = 0;
-  leftLid.pivot.set(0, -28 * S); // pivot at eye center for scale
-  headContainer.addChild(leftLid);
-
-  const rightLid = new Graphics();
-  rightLid.roundRect(9 * S, -39 * S, 22 * S, 22 * S, 4 * S);
-  rightLid.fill({ color: 0x1A1A1A, alpha: 0.95 });
-  rightLid.scale.y = 0;
-  rightLid.pivot.set(0, -28 * S);
-  headContainer.addChild(rightLid);
+  // Eyelids (redrawn dynamically each frame during blinks)
+  const blinkGfx = new Graphics();
+  headContainer.addChild(blinkGfx);
 
   // Mouth (smile arc)
   const mouthGfx = new Graphics();
@@ -224,16 +213,25 @@ export function createRobotSlide(app) {
     const breathScale = 1 + Math.sin(t * 1.2) * 0.012;
     robotContainer.scale.set(breathScale);
 
-    // C) Eye blink
+    // C) Eye blink — redraw lids dynamically
     const blinkCycle = 3.5;
-    const blinkDur = 0.1;
+    const blinkDur = 0.12;
     const bp1 = t % blinkCycle;
     const blink1 = bp1 < blinkDur ? Math.sin((bp1 / blinkDur) * Math.PI) : 0;
     const bp2 = t % 7.3;
-    const blink2 = (bp2 > 0.2 && bp2 < 0.3) ? Math.sin(((bp2 - 0.2) / 0.1) * Math.PI) : 0;
+    const blink2 = (bp2 > 0.2 && bp2 < 0.32) ? Math.sin(((bp2 - 0.2) / 0.12) * Math.PI) : 0;
     const blinkVal = Math.max(blink1, blink2);
-    leftLid.scale.y = blinkVal;
-    rightLid.scale.y = blinkVal;
+    blinkGfx.clear();
+    if (blinkVal > 0.01) {
+      const eyeR = 11 * S;
+      const lidH = blinkVal * eyeR * 2;
+      // Left eye lid — closes from top down over the eye
+      blinkGfx.roundRect(-20 * S - eyeR, -28 * S - eyeR, eyeR * 2, lidH, 3 * S);
+      blinkGfx.fill({ color: 0x1A1A1A, alpha: 0.95 });
+      // Right eye lid
+      blinkGfx.roundRect(20 * S - eyeR, -28 * S - eyeR, eyeR * 2, lidH, 3 * S);
+      blinkGfx.fill({ color: 0x1A1A1A, alpha: 0.95 });
+    }
 
     // D) Wave arm
     const waveCycle = 8;
